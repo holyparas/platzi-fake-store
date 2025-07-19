@@ -1,12 +1,12 @@
-import React from 'react';
-import Home from './Home';
-import Products from './Products';
+import React, { useState } from 'react';
+import Home from './pages/Home';
+import Products from './pages/Products';
 const App = () => {
+  const [cart, setCart] = useState([]);
+
   return (
     <div>
-      <Home></Home>
-      <hr />
-      <Products></Products>
+      <Card ></Card>
     </div>
   );
 }
