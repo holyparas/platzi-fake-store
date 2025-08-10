@@ -7,7 +7,7 @@ const Layout = () => {
 
   return (
     <div>
-      <Header />
+      <Header cart={cart}/>
       <Outlet context={{ cart, setCart }} />
       <footer
         style={{

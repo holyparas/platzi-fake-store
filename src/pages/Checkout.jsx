@@ -20,6 +20,7 @@ const Checkout = () => {
           {cart.map((item) => (
             <CheckoutCard
               key={item.key}
+              item={item}
               image={item.image}
               price={item.price}
               name={item.name}

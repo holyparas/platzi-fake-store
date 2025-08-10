@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, Store } from 'lucide-react';
 import styles from "./Header.module.css";
 
-const Header = () => {
+const Header = ({cart}) => {
   const location = useLocation();
 
   return (
@@ -29,6 +29,7 @@ const Header = () => {
       <div className={styles.checkout}>
         <ShoppingCart size={22} />
         <Link to="/checkout">Checkout</Link>
+        <p>{cart.length}</p>
       </div>
     </header>
   );
