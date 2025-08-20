@@ -1,7 +1,6 @@
 # Fake Store/ E-commerce site
 •	Built a mock e-commerce store with React and Fake Store API.  
 •	Implemented dynamic shopping cart with quantity control, product listings, and checkout flow using React Router and OutletContext.  
-• Data fetched from Fake Store API  
   
 Live site deployed on netlify: [https://fakestoreparas.netlify.app/]  
 
