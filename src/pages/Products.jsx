@@ -1,32 +1,43 @@
-import { useEffect, useState } from 'react';
-import Card from '../components/Card';
-import { useOutletContext } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import Card from "../components/Card";
+import { useOutletContext } from "react-router-dom";
 const Products = () => {
+  const { cart, setCart, data, setData } = useOutletContext();
 
-  const {cart, setCart} = useOutletContext();
-  const [data, setData] = useState("");
-
-  const url = 'https://fakestoreapi.com/products';
+  const url = "https://fakestoreapi.com/products";
 
   useEffect(() => {
-    fetch(url).then((res) => res.json())
-    .then((fetchData) => {
-      console.log(fetchData);
-      setData(fetchData);
-    })
-  }, []);
+    if (!data) {
+      fetch(url)
+        .then((res) => res.json())
+        .then((fetchData) => {
+          console.log(fetchData);
+          setData(fetchData);
+        });
+    }
+  }, [data]);
 
   console.log("state data: ", data);
   return (
     <div>
       <div className="card-grid">
-        {data && data.map((item) => {
-          return <Card key={item.id} image={item.image} price={item.price} name={item.title} rating={item.rating} cart = {cart} setCart={setCart}/>
-        })}
+        {data &&
+          data.map((item) => {
+            return (
+              <Card
+                key={item.id}
+                image={item.image}
+                price={item.price}
+                name={item.title}
+                rating={item.rating}
+                cart={cart}
+                setCart={setCart}
+              />
+            );
+          })}
       </div>
-
     </div>
   );
-}
+};
 
 export default Products;

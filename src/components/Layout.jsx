@@ -4,11 +4,12 @@ import { useState } from "react";
 
 const Layout = () => {
   const [cart, setCart] = useState([]);
+  const [data, setData] = useState(null);
 
   return (
     <div>
-      <Header cart={cart}/>
-      <Outlet context={{ cart, setCart }} />
+      <Header cart={cart} />
+      <Outlet context={{ cart, setCart, data, setData }} />
       <footer
         style={{
           marginTop: "40px",
