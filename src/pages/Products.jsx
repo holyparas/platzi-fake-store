@@ -17,22 +17,13 @@ const Products = () => {
     }
   }, [data]);
 
-  console.log("state data: ", data);
   return (
     <div>
       <div className="card-grid">
         {data &&
           data.map((item) => {
             return (
-              <Card
-                key={item.id}
-                image={item.image}
-                price={item.price}
-                name={item.title}
-                rating={item.rating}
-                cart={cart}
-                setCart={setCart}
-              />
+              <Card key={item.id} item={item} cart={cart} setCart={setCart} />
             );
           })}
       </div>

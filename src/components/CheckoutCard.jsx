@@ -1,18 +1,18 @@
 import styles from "./CheckoutCard.module.css";
-// FIX buttons to add or subtract quantity
-const CheckoutCard = ({image, price, name, quantity, item}) => {
+
+const CheckoutCard = ({ quantity, item, updateQuantity }) => {
   return (
     <div className={styles.cardWrapper}>
-      <img src={image} alt={name} className={styles.img}/>
+      <img src={item.image} alt={item.title} className={styles.img} />
       <div className={styles.details}>
-        <p>{name}</p>
+        <p>{item.title}</p>
         <p>Quantity: {quantity}</p>
-        <button onClick={item.quantity= item.quantity + 1}>Add</button> 
-        <button onClick={quantity-1}>Subtract</button>
+        <button onClick={() => updateQuantity(item.id, 1)}>Add</button>
+        <button onClick={() => updateQuantity(item.id, -1)}>Subtract</button>
       </div>
-      <p className={styles.price}>${price}</p>
+      <p className={styles.price}>${(item.price * quantity).toFixed(2)}</p>
     </div>
   );
-}
+};
 
 export default CheckoutCard;
