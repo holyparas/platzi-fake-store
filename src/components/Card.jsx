@@ -2,9 +2,8 @@ import { Star } from "lucide-react";
 import styles from "./Card.module.css";
 import { useState } from "react";
 
-const Card = ({ image, key, price, name, rating, cart, setCart }) => {
+const Card = ({ item, cart, setCart }) => {
   const [qty, setQty] = useState(1);
-  console.log("qty:", qty);
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -14,23 +13,37 @@ const Card = ({ image, key, price, name, rating, cart, setCart }) => {
     setQty(value);
   };
 
-  const addToCart = (e) => {
-    console.log("event", e);
-    if (qty > 0) {
-      setCart([...cart, { image, price, name, quantity: qty, key }]);
+  const addToCart = () => {
+    const existing = cart.find((cartItem) => cartItem.item.id === item.id);
+    if (existing) {
+      setCart(
+        cart.map((cartItem) =>
+          cartItem.item.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + Number(qty) }
+            : cartItem
+        )
+      );
+    } else {
+      setCart([...cart, { item, quantity: qty }]);
     }
   };
+  console.log("CART: ", cart);
   return (
     <div className={styles.cardContainer}>
-      <img src={image} alt={name} className={styles.cardImg} loading="lazy" />
-      <p>${price}</p>
-      <p>{name}</p>
+      <img
+        src={item.image}
+        alt={item.title}
+        className={styles.cardImg}
+        loading="lazy"
+      />
+      <p>${item.price.toFixed(2)}</p>
+      <p>{item.title}</p>
       <div className={styles.cardRating}>
         <div>
-          {rating.rate}
+          {item.rating.rate}
           <Star color="#ffd700" size={18} />
         </div>
-        <div>{rating.count} reviews</div>
+        <div>{item.rating.count} reviews</div>
       </div>
       <label htmlFor="quantity">Quantity:</label>
       <input
