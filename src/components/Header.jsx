@@ -9,25 +9,34 @@ const Header = ({ cart }) => {
   return (
     <header className="flex justify-between items-center bg-gray-900 text-gray-100">
       <h1 className="flex gap-2 items-center">
+        <Store size={24} />
         <Link to="/" className="text-3xl">
           Fake Store
         </Link>
-        <Store size={24} />
       </h1>
-      <nav className="flex gap-5">
-        <Link to="/" className="text-3xl">
+      <nav className="flex gap-5 items-center text-2xl">
+        <Link
+          to="/"
+          className={`p-3  rounded-lg transition ${
+            location.pathname === "/"
+              ? "bg-gray-300 text-black"
+              : "hover:text-black hover:bg-gray-300"
+          }`}
+        >
           Home
         </Link>
         <Link
           to="/products"
-          className={`${styles.navLink} ${
-            location.pathname === "/products" ? styles.active : ""
+          className={`p-3  rounded-lg transition ${
+            location.pathname === "/products"
+              ? "bg-gray-300 text-black"
+              : "hover:text-black hover:bg-gray-300"
           }`}
         >
           Products
         </Link>
       </nav>
-      <div className={styles.checkout}>
+      <div className="flex items-center bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg gap-2">
         <ShoppingCart size={22} />
         <Link to="/checkout">Checkout</Link>
         <p>{cart.length > 0 ? cart.length : ""}</p>
